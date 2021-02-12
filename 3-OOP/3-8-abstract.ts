@@ -1,7 +1,7 @@
 {
   /**
    * Abstract
-   * 자페 적으로 생성을 할 수 없다.
+   * 자체 적으로 생성(instance)을 할 수 없다.
    * 상속할 클래스마다 달라질 함수가 있다면 abstract를 준다.
    * 자식 클래스에서 다시 함수를 작성할 수 있다.
    * Composition이 더 좋다.
@@ -73,6 +73,7 @@
       console.log("Steaming some milk..");
     }
 
+    // Overloading
     protected extract(shots: number): CoffeeCup {
       this.steamMilk();
       return {

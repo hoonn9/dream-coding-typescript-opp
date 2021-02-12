@@ -74,6 +74,7 @@
     private steamMilk(): void {
       console.log("Steaming some milk..");
     }
+    // Overriding
     makeCoffee(shots: number): CoffeeCup {
       const coffee = super.makeCoffee(shots);
       this.steamMilk();
