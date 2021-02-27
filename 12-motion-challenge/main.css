@@ -1,0 +1,69 @@
+body {
+  margin: 0px;
+}
+button {
+  background-color: transparent;
+  border: 0px;
+  cursor: pointer;
+  outline: 0;
+}
+button:focus,
+button:hover {
+  border: 0px;
+}
+
+#root {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+  background-image: url("public/cool-background.png");
+}
+#root-container {
+  width: 75%;
+  height: 100%;
+}
+#header-container {
+  width: 100%;
+  height: 20%;
+  display: flex;
+  justify-content: center;
+}
+#header-wrapper {
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+}
+.header-font {
+  font-weight: 700;
+  color: #fff;
+}
+#header-title-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70%;
+}
+#header-title {
+  font-size: 42px;
+  text-align: center;
+}
+#header-menu-container {
+  display: flex;
+  height: 30%;
+}
+#header-menu-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  flex: 1;
+}
+.header-menu-title {
+  text-align: center;
+  padding: 8px;
+}
+
+#body-container {
+  height: 80%;
+  background-color: #000;
+}
