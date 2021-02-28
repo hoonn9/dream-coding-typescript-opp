@@ -5,3 +5,5 @@ import * as Header from "./components/header.js";
 function rootElement() {
   return document.querySelector("root");
 }
+
+Header.createHeader();

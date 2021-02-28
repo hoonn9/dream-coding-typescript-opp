@@ -24,15 +24,16 @@ button:hover {
   height: 100%;
 }
 #header-container {
+  position: relative;
   width: 100%;
   height: 20%;
   display: flex;
   justify-content: center;
 }
 #header-wrapper {
+  position: relative;
   width: 100%;
   height: 100%;
-  background-color: #000;
 }
 .header-font {
   font-weight: 700;
@@ -66,4 +67,60 @@ button:hover {
 #body-container {
   height: 80%;
   background-color: #000;
+}
+
+#modal-container {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  visibility: hidden;
+}
+#modal-background {
+  position: absolute;
+  background-color: #000;
+  width: 100%;
+  height: 100%;
+  opacity: 0.3;
+}
+#modal-wrapper {
+  width: 75%;
+  height: 75%;
+  z-index: 100;
+  color: #fff;
+  background-color: #000;
+}
+#modal-close-button {
+  width: 25px;
+  height: 25px;
+  background-color: #fff;
+}
+#modal-close-button-wrapper {
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+.modal-form-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+.modal-input-wrapper {
+  display: flex;
+  width: 100%;
+  padding: 16px 0px;
+}
+.modal-input-label {
+  display: inline-block;
+  flex: 1;
+  font-size: 18px;
+  font-weight: 700;
+}
+.modal-input {
+  flex: 4;
 }

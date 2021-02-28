@@ -1,20 +1,51 @@
+import { Modal, ModalForm, ModalInput } from "./modal.js";
+
 const header = document.querySelector("#header-wrapper");
-const ImageButton = document.querySelector("#header-menu-image");
-const VideoButton = document.querySelector("#header-menu-video");
-const NoteButton = document.querySelector("#header-menu-note");
-const TaskButton = document.querySelector("#header-menu-task");
-const root = document.querySelector("root");
+const headerTabs = document.querySelectorAll(".header-menu-button");
 
-class Modal {
-  constructor(private title: string) {}
+type HeaderTabName = "image" | "video" | "note" | "task";
 
-  create() {
-    const wrapper = document.createElement("div");
+interface HeaderTabImpl {
+  modalFormController(): ModalForm;
+  onClick(): void;
+}
+
+class HeaderTab implements HeaderTabImpl {
+  constructor(private name: HeaderTabName) {}
+
+  modalFormController() {
+    const inputs: ModalInput[] = [new ModalInput("Title")];
+    switch (this.name) {
+      case "image":
+      case "video":
+        const urlInput = new ModalInput("Url");
+        inputs.push(urlInput);
+        break;
+      case "note":
+        inputs.push(new ModalInput("body"));
+        break;
+      case "task":
+        inputs.push(new ModalInput("todo"));
+        break;
+      default:
+        throw Error(`${name} tab is not exist.`);
+    }
+    return new ModalForm(inputs);
+  }
+
+  onClick() {
+    const modalForm = this.modalFormController();
+    const modal = new Modal("test", modalForm);
+    modal.create();
   }
 }
 
 export const createHeader = () => {
-  console.log("createHeader");
+  headerTabs.forEach((element) => {
+    const name = element.getAttribute("name") as HeaderTabName;
+    const tab = new HeaderTab(name);
+    element.addEventListener("click", tab.onClick.bind(tab));
+  });
 };
 
 export default header;
