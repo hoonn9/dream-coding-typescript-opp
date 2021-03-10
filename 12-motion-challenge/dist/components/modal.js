@@ -1,44 +1,8 @@
 var modalContainer = document.querySelector("#modal-container");
-var ModalInput = /** @class */ (function () {
-    function ModalInput(title) {
-        this.title = title;
-    }
-    Object.defineProperty(ModalInput.prototype, "element", {
-        get: function () {
-            var inputWrapper = document.createElement("div");
-            inputWrapper.className = "modal-input-wrapper";
-            var label = document.createElement("label");
-            label.className = "modal-input-label";
-            label.innerText = this.title;
-            var input = document.createElement("input");
-            input.className = "modal-input";
-            inputWrapper.appendChild(label);
-            inputWrapper.appendChild(input);
-            return inputWrapper;
-        },
-        enumerable: false,
-        configurable: true
-    });
-    return ModalInput;
-}());
-export { ModalInput };
-var ModalForm = /** @class */ (function () {
-    function ModalForm(inputs) {
-        this.inputs = inputs;
-    }
-    ModalForm.prototype.injection = function (parent) {
-        var formWrapper = document.createElement("div");
-        formWrapper.className = "modal-form-wrapper";
-        this.inputs.forEach(function (input) { return formWrapper.appendChild(input.element); });
-        parent.appendChild(formWrapper);
-    };
-    return ModalForm;
-}());
-export { ModalForm };
 var Modal = /** @class */ (function () {
-    function Modal(title, form) {
-        this.title = title;
-        this.form = form;
+    function Modal(content, addOnClick) {
+        this.content = content;
+        this.addOnClick = addOnClick;
     }
     Modal.prototype.setVisible = function (visible) {
         modalContainer === null || modalContainer === void 0 ? void 0 : modalContainer.setAttribute("style", "visibility: " + (visible ? "visible" : "hidden"));
@@ -53,6 +17,16 @@ var Modal = /** @class */ (function () {
         closeButtonWrapper.appendChild(closeButton);
         return closeButtonWrapper;
     };
+    Modal.prototype.createAddButton = function (onClick) {
+        var addButtonWrapper = document.createElement("div");
+        addButtonWrapper.className = "modal-add-button-wrapper";
+        var addButton = document.createElement("button");
+        addButton.innerText = "ADD";
+        addButton.className = "modal-add-button";
+        addButton.addEventListener("click", onClick);
+        addButtonWrapper.appendChild(addButton);
+        return addButtonWrapper;
+    };
     Modal.prototype.create = function () {
         var _this = this;
         var wrapper = document.createElement("div");
@@ -61,8 +35,14 @@ var Modal = /** @class */ (function () {
             wrapper.remove();
             _this.setVisible(false);
         });
+        var addButton = this.createAddButton(function () {
+            _this.addOnClick();
+            wrapper.remove();
+            _this.setVisible(false);
+        });
         wrapper.appendChild(closeButton);
-        this.form.injection(wrapper);
+        wrapper.appendChild(this.content);
+        wrapper.appendChild(addButton);
         modalContainer === null || modalContainer === void 0 ? void 0 : modalContainer.appendChild(wrapper);
         this.setVisible(true);
     };
