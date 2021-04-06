@@ -20,8 +20,8 @@ class HeaderTab implements HeaderTabImpl {
   onClick() {
     const newForm = new Form(this.blockMaker.inputs);
     const modal = new Modal(newForm.form, () => {
+      console.log("onCLick");
       this.page.addBlock(this.motionBlock, this.blockMaker);
-      this.blockMaker.save();
       this.blockMaker.inputs.forEach((input) => {
         input.value = "";
       });

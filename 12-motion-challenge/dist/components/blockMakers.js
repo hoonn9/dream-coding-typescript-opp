@@ -14,6 +14,13 @@ var ImageBlockMaker = /** @class */ (function () {
         enumerable: false,
         configurable: true
     });
+    Object.defineProperty(ImageBlockMaker.prototype, "index", {
+        set: function (index) {
+            this.index = index;
+        },
+        enumerable: false,
+        configurable: true
+    });
     ImageBlockMaker.prototype.block = function () {
         var wrapper = document.createElement("div");
         wrapper.setAttribute("style", "display: flex;");
@@ -26,9 +33,9 @@ var ImageBlockMaker = /** @class */ (function () {
         wrapper.appendChild(title);
         return wrapper;
     };
-    ImageBlockMaker.prototype.save = function () {
+    ImageBlockMaker.prototype.save = function (index) {
         var newBlock = {
-            id: 0,
+            id: index,
             block: {
                 type: "url",
                 blockType: "image",
@@ -55,6 +62,13 @@ var VideoBlockMaker = /** @class */ (function () {
         enumerable: false,
         configurable: true
     });
+    Object.defineProperty(VideoBlockMaker.prototype, "index", {
+        set: function (index) {
+            this.index = index;
+        },
+        enumerable: false,
+        configurable: true
+    });
     VideoBlockMaker.prototype.block = function () {
         var _a, _b;
         var wrapper = document.createElement("div");
@@ -69,9 +83,9 @@ var VideoBlockMaker = /** @class */ (function () {
         wrapper.appendChild(title);
         return wrapper;
     };
-    VideoBlockMaker.prototype.save = function () {
+    VideoBlockMaker.prototype.save = function (index) {
         var newBlock = {
-            id: 0,
+            id: index,
             block: {
                 type: "url",
                 blockType: "video",
@@ -98,6 +112,13 @@ var NoteBlockMaker = /** @class */ (function () {
         enumerable: false,
         configurable: true
     });
+    Object.defineProperty(NoteBlockMaker.prototype, "index", {
+        set: function (index) {
+            this.index = index;
+        },
+        enumerable: false,
+        configurable: true
+    });
     NoteBlockMaker.prototype.block = function () {
         var wrapper = document.createElement("div");
         var title = document.createElement("div");
@@ -110,9 +131,9 @@ var NoteBlockMaker = /** @class */ (function () {
         wrapper.appendChild(body);
         return wrapper;
     };
-    NoteBlockMaker.prototype.save = function () {
+    NoteBlockMaker.prototype.save = function (index) {
         var newBlock = {
-            id: 0,
+            id: index,
             block: {
                 type: "body",
                 blockType: "note",
@@ -140,6 +161,13 @@ var TaskBlockMaker = /** @class */ (function () {
         enumerable: false,
         configurable: true
     });
+    Object.defineProperty(TaskBlockMaker.prototype, "index", {
+        set: function (index) {
+            this.index = index;
+        },
+        enumerable: false,
+        configurable: true
+    });
     TaskBlockMaker.prototype.block = function () {
         var wrapper = document.createElement("div");
         var title = document.createElement("div");
@@ -153,9 +181,9 @@ var TaskBlockMaker = /** @class */ (function () {
         wrapper.appendChild(todo);
         return wrapper;
     };
-    TaskBlockMaker.prototype.save = function () {
+    TaskBlockMaker.prototype.save = function (index) {
         var newBlock = {
-            id: 0,
+            id: index,
             block: {
                 type: "body",
                 blockType: "task",

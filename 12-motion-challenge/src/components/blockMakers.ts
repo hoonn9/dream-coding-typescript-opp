@@ -4,9 +4,10 @@ import { Input } from "./input.js";
 
 export interface BlockMaker {
   NAME: string;
+  index: number;
   inputs: Input[];
   block(): HTMLDivElement;
-  save(): BlockData<BlockType>;
+  save(index: number): BlockData<BlockType>;
 }
 
 export class ImageBlockMaker implements BlockMaker {
@@ -20,6 +21,10 @@ export class ImageBlockMaker implements BlockMaker {
 
   get inputs() {
     return [this.titleInput, this.urlInput];
+  }
+
+  set index(index: number) {
+    this.index = index;
   }
 
   block() {
@@ -36,9 +41,9 @@ export class ImageBlockMaker implements BlockMaker {
     return wrapper;
   }
 
-  save() {
+  save(index: number) {
     const newBlock: BlockData<UrlBlock> = {
-      id: 0,
+      id: index,
       block: {
         type: "url",
         blockType: "image",
@@ -65,6 +70,10 @@ export class VideoBlockMaker implements BlockMaker {
     return [this.titleInput, this.urlInput];
   }
 
+  set index(index: number) {
+    this.index = index;
+  }
+
   block() {
     const wrapper = document.createElement("div");
     wrapper.setAttribute("style", "display: flex;");
@@ -80,9 +89,9 @@ export class VideoBlockMaker implements BlockMaker {
     return wrapper;
   }
 
-  save() {
+  save(index: number) {
     const newBlock: BlockData<UrlBlock> = {
-      id: 0,
+      id: index,
       block: {
         type: "url",
         blockType: "video",
@@ -108,6 +117,10 @@ export class NoteBlockMaker implements BlockMaker {
     return [this.titleInput, this.bodyInput];
   }
 
+  set index(index: number) {
+    this.index = index;
+  }
+
   block() {
     const wrapper = document.createElement("div");
 
@@ -125,9 +138,9 @@ export class NoteBlockMaker implements BlockMaker {
     return wrapper;
   }
 
-  save() {
+  save(index: number) {
     const newBlock: BlockData<BodyBlock> = {
-      id: 0,
+      id: index,
       block: {
         type: "body",
         blockType: "note",
@@ -154,6 +167,10 @@ export class TaskBlockMaker implements BlockMaker {
     return [this.titleInput, this.bodyInput];
   }
 
+  set index(index: number) {
+    this.index = index;
+  }
+
   block() {
     const wrapper = document.createElement("div");
 
@@ -166,15 +183,16 @@ export class TaskBlockMaker implements BlockMaker {
 
     todo.style.color = "#FFF";
     todo.innerText = `🧻${this.titleInput.value}`;
+
     wrapper.appendChild(title);
     wrapper.appendChild(todo);
 
     return wrapper;
   }
 
-  save() {
+  save(index: number) {
     const newBlock: BlockData<BodyBlock> = {
-      id: 0,
+      id: index,
       block: {
         type: "body",
         blockType: "task",

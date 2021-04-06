@@ -13,8 +13,8 @@ var HeaderTab = /** @class */ (function () {
         var _this = this;
         var newForm = new Form(this.blockMaker.inputs);
         var modal = new Modal(newForm.form, function () {
+            console.log("onCLick");
             _this.page.addBlock(_this.motionBlock, _this.blockMaker);
-            _this.blockMaker.save();
             _this.blockMaker.inputs.forEach(function (input) {
                 input.value = "";
             });
